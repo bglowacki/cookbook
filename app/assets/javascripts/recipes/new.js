@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.css';
 import NewRecipeView from './new/new_recipe_view';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'

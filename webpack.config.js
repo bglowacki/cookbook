@@ -2,13 +2,6 @@ path = require('path');
 var bourbon = require('node-bourbon');
 
 
-var outputPublicPath = undefined;
-if (process.env.RAILS_ENV == 'production') {
-  outputPublicPath = '/assets/';
-} else {
-  outputPublicPath = "http://localhost:8080/assets";
-}
-
 var webpackConf = {
   context: __dirname + '/app/assets/javascripts',
   entry: {
@@ -19,7 +12,7 @@ var webpackConf = {
   output: {
     path: path.join(__dirname, "./app/assets/javascripts"),
     filename: "[name].js",
-    publicPath: outputPublicPath
+    publicPath: "http://localhost:8080/assets"
   },
   module: {
     loaders: [

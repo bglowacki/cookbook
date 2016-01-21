@@ -7,12 +7,11 @@ import {addIngredient} from './app/actions';
 
 class NewRecipeView extends React.Component {
   render () {
-    const {dispatch, numberOfIngredients} = this.props;
     return (
       <div id="new_recipe" className="container">
         <h1>Add new recipe</h1>
-        <NewRecipeForm numberOfIngredients={numberOfIngredients} addIngredient={() => {
-          dispatch(addIngredient())
+        <NewRecipeForm numberOfIngredients={this.props.numberOfIngredients} addIngredient={() => {
+          this.props.dispatch(addIngredient())
         }} />
       </div>
     )

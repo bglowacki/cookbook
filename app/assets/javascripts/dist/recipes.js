@@ -20110,9 +20110,7 @@
 	  _createClass(NewRecipeView, [{
 	    key: "render",
 	    value: function render() {
-	      var _props = this.props;
-	      var dispatch = _props.dispatch;
-	      var numberOfIngredients = _props.numberOfIngredients;
+	      var _this2 = this;
 
 	      return _react2.default.createElement(
 	        "div",
@@ -20122,8 +20120,8 @@
 	          null,
 	          "Add new recipe"
 	        ),
-	        _react2.default.createElement(_new_recipe_form2.default, { numberOfIngredients: numberOfIngredients, addIngredient: function addIngredient() {
-	            dispatch((0, _actions.add_ingredient)());
+	        _react2.default.createElement(_new_recipe_form2.default, { numberOfIngredients: this.props.numberOfIngredients, addIngredient: function addIngredient() {
+	            _this2.props.dispatch((0, _actions.addIngredient)());
 	          } })
 	      );
 	    }
@@ -20149,6 +20147,8 @@
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/bartekglowacki/Projects/cookbook/node_modules/react-hot-loader/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/bartekglowacki/Projects/cookbook/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -20178,47 +20178,81 @@
 	  _inherits(AddNewIngredientButton, _React$Component);
 
 	  function AddNewIngredientButton() {
+	    var _Object$getPrototypeO;
+
+	    var _temp, _this, _ret;
+
 	    _classCallCheck(this, AddNewIngredientButton);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AddNewIngredientButton).apply(this, arguments));
-	  }
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
 
-	  _createClass(AddNewIngredientButton, [{
-	    key: 'increaseNumberOfIngredients',
-	    value: function increaseNumberOfIngredients() {}
-	  }, {
-	    key: 'render',
-	    value: function render() {
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(AddNewIngredientButton)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.addIngredient = function () {
+	      _this.props.addIngredient();
+	    }, _this.render = function () {
 	      return _react2.default.createElement(
 	        _reactBootstrap.Button,
-	        { onClick: this.increaseNumberOfIngredients },
+	        { onClick: _this.addIngredient },
 	        'Add new ingredient'
 	      );
-	    }
-	  }]);
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
 
 	  return AddNewIngredientButton;
 	}(_react2.default.Component);
 
-	var NewRecipeForm = function (_React$Component2) {
-	  _inherits(NewRecipeForm, _React$Component2);
+	var NewIngredientInput = function (_React$Component2) {
+	  _inherits(NewIngredientInput, _React$Component2);
 
-	  function NewRecipeForm() {
-	    _classCallCheck(this, NewRecipeForm);
+	  function NewIngredientInput() {
+	    _classCallCheck(this, NewIngredientInput);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(NewRecipeForm).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(NewIngredientInput).apply(this, arguments));
 	  }
 
-	  _createClass(NewRecipeForm, [{
-	    key: 'renderIngredients',
-	    value: function renderIngredients() {
-	      return _lodash2.default.times(this.props.numberOfIngredients, function (index) {
-	        return _react2.default.createElement(_reactBootstrap.Input, { type: 'text', key: "ingredient_" + (index + 1), label: "Ingredient " + (index + 1) });
-	      });
-	    }
-	  }, {
+	  _createClass(NewIngredientInput, [{
 	    key: 'render',
 	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'form-inline clearfix' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-xs-2 col-xs-offset-1' },
+	          _react2.default.createElement(_reactBootstrap.Input, _extends({ type: 'text', className: 'ingredient-input' }, this.props))
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-xs-2 col-xs-offset-1' },
+	          _react2.default.createElement(_reactBootstrap.Input, { type: 'text', label: 'Quantity', className: 'ingredient-quantity-input' })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return NewIngredientInput;
+	}(_react2.default.Component);
+
+	var NewRecipeForm = function (_React$Component3) {
+	  _inherits(NewRecipeForm, _React$Component3);
+
+	  function NewRecipeForm() {
+	    var _Object$getPrototypeO2;
+
+	    var _temp2, _this3, _ret2;
+
+	    _classCallCheck(this, NewRecipeForm);
+
+	    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	      args[_key2] = arguments[_key2];
+	    }
+
+	    return _ret2 = (_temp2 = (_this3 = _possibleConstructorReturn(this, (_Object$getPrototypeO2 = Object.getPrototypeOf(NewRecipeForm)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this3), _this3.renderIngredients = function () {
+	      return _lodash2.default.times(_this3.props.numberOfIngredients, function (index) {
+	        return _react2.default.createElement(NewIngredientInput, { key: "ingredient_" + (index + 1), label: "Ingedient " + (index + 1) });
+	      });
+	    }, _this3.render = function () {
 	      return _react2.default.createElement(
 	        'form',
 	        { className: 'form-horizontal' },
@@ -20227,12 +20261,12 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'ingredient-list' },
-	          _react2.default.createElement(AddNewIngredientButton, null),
-	          this.renderIngredients()
+	          _this3.renderIngredients(),
+	          _react2.default.createElement(AddNewIngredientButton, { addIngredient: _this3.props.addIngredient })
 	        )
 	      );
-	    }
-	  }]);
+	    }, _temp2), _possibleConstructorReturn(_this3, _ret2);
+	  }
 
 	  return NewRecipeForm;
 	}(_react2.default.Component);
@@ -52800,10 +52834,10 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.add_ingredient = add_ingredient;
+	exports.addIngredient = addIngredient;
 	var ADD_INGREDIENT = exports.ADD_INGREDIENT = 'ADD_INGREDIENT';
 
-	function add_ingredient() {
+	function addIngredient() {
 	  return { type: ADD_INGREDIENT };
 	}
 
