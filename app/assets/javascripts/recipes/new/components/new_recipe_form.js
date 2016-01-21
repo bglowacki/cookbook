@@ -2,17 +2,17 @@ import React from "react";
 import {Input, Button} from 'react-bootstrap'
 import _ from 'lodash';
 
-class AddNewIngredientButton extends React.Component {
-  addIngredient = () => {
-    this.props.addIngredient()
+class AddNewInput extends React.Component {
+  onClick = () => {
+    this.props.onClick()
   };
 
   render = () => {
-    return(<Button onClick={this.addIngredient}><i className="fa fa-plus-circle"/></Button>)
+    return(<Button onClick={this.onClick}><i className="fa fa-plus-circle"/></Button>)
   };
 }
 
-class NewIngredientInput extends React.Component {
+class IngredientInput extends React.Component {
   render() {
     return (
       <div className="form-inline clearfix">
@@ -27,19 +27,34 @@ class NewIngredientInput extends React.Component {
   }
 }
 
+class PreparationStepInput extends React.Component {
+  render = () => {
+    return(
+      <Input type="textarea" ref={"step_" + this.props.index} className="preparation-step-input" label={"Step " + this.props.index}/>
+    )
+  };
+}
+
 class NewRecipeForm extends React.Component {
   renderIngredients = () => {
-    return(_.times(this.props.numberOfIngredients, (index) => <NewIngredientInput key={"ingredient_"+(index+1)} index={index + 1}/>))
+    return(_.times(this.props.numberOfIngredients, (index) => <IngredientInput key={"ingredient_"+(index+1)} index={index + 1}/>))
+  };
+
+  renderPreparationSteps = () => {
+    return(_.times(this.props.numberOfPreparationSteps, (index) => <PreparationStepInput key={"preparation_step_" + (index+1)} index={index + 1}/>))
   };
 
   render = () => {
     return(<form className="form-horizontal">
       <Input type="text" placeholder="Dish name" label="Name"/>
-      <Input type="textarea" placeholder="Instruction" label="Instruction"/>
+      <div className="preparation-steps">
+        {this.renderPreparationSteps()}
+      </div>
+      <AddNewInput onClick={this.props.addPreparationStep} />
       <div className="ingredient-list">
         {this.renderIngredients()}
       </div>
-      <AddNewIngredientButton addIngredient={this.props.addIngredient} />
+      <AddNewInput onClick={this.props.addIngredient} />
     </form>)
   };
 }

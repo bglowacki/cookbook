@@ -1,27 +1,35 @@
 import React from "react";
 import NewRecipeForm from "./components/new_recipe_form";
 import { connect } from 'react-redux';
-import {addIngredient} from './app/actions';
-
+import {addIngredient, addPreparationStep} from './app/actions';
 
 
 class NewRecipeView extends React.Component {
-  render () {
+  render = () => {
     return (
       <div id="new_recipe" className="container">
         <h1>Add new recipe</h1>
-        <NewRecipeForm numberOfIngredients={this.props.numberOfIngredients} addIngredient={() => {
-          this.props.dispatch(addIngredient())
-        }} />
+        <NewRecipeForm
+          numberOfIngredients={this.props.numberOfIngredients}
+          numberOfPreparationSteps={this.props.numberOfPreparationSteps}
+          addIngredient={ () => {
+            this.props.dispatch(addIngredient())
+          }}
+          addPreparationStep={() => {
+            this.props.dispatch(addPreparationStep())
+          }}
+
+        />
       </div>
     )
-  }
+  };
 }
 
-function select(state) {
+function run(state) {
   return {
-    numberOfIngredients: state.ingredients
+    numberOfIngredients: state.ingredients,
+    numberOfPreparationSteps: state.preparationSteps
   }
 }
 
-export default connect(select)(NewRecipeView)
+export default connect(run)(NewRecipeView)
