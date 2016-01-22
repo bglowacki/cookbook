@@ -13,14 +13,24 @@ class AddNewInput extends React.Component {
 }
 
 class IngredientInput extends React.Component {
+  onChange = (e) => {
+    var keys = _.keys(this.refs);
+    var ingredientKey = _.find(keys, function(key) { return /^ingredient.+/.test(key) });
+    var quantityKey = _.find(keys, function(key) { return /quantity.+/.test(key) });
+    var ingredientId = ingredientKey;
+    var ingredientName = this.refs[ingredientKey].refs.input.value;
+    var ingredientQuantity = this.refs[quantityKey].refs.input.value;
+    this.props.onChange(ingredientId, ingredientName, ingredientQuantity)
+  };
+
   render() {
     return (
       <div className="form-inline clearfix">
         <div className="col-xs-2 col-xs-offset-1">
-          <Input type="text" ref={"ingredient_" + this.props.index} className="ingredient-input" label={"Ingredient " + this.props.index}/>
+          <Input type="text" onChange={this.onChange} ref={"ingredient_" + this.props.index} className="ingredient-input" label={"Ingredient " + this.props.index}/>
         </div>
         <div className="col-xs-2 col-xs-offset-1">
-          <Input type="text" ref={"quantity_" + this.props.index} label="Quantity" className="ingredient-quantity-input"/>
+          <Input type="text" onChange={this.onChange} ref={"quantity_" + this.props.index} label="Quantity" className="ingredient-quantity-input"/>
         </div>
       </div>
     )
@@ -37,7 +47,7 @@ class PreparationStepInput extends React.Component {
 
 class NewRecipeForm extends React.Component {
   renderIngredients = () => {
-    return(_.times(this.props.numberOfIngredients, (index) => <IngredientInput key={"ingredient_"+(index+1)} index={index + 1}/>))
+    return(_.times(this.props.numberOfIngredients, (index) => <IngredientInput onChange={this.props.changeIngredient} key={"ingredient_"+(index+1)} index={index + 1}/>))
   };
 
   renderPreparationSteps = () => {
@@ -50,11 +60,11 @@ class NewRecipeForm extends React.Component {
       <div className="preparation-steps">
         {this.renderPreparationSteps()}
       </div>
-      <AddNewInput onClick={this.props.addPreparationStep} />
+      <AddNewInput onClick={this.props.addPreparationStepInput} />
       <div className="ingredient-list">
         {this.renderIngredients()}
       </div>
-      <AddNewInput onClick={this.props.addIngredient} />
+      <AddNewInput onClick={this.props.addIngredientInput} />
     </form>)
   };
 }
