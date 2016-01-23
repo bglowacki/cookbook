@@ -17,6 +17,7 @@ class NewRecipeView extends React.Component {
 }
 
 function run(state) {
+  console.log(state);
   return {
     ingredients: state.ingredients,
     preparationSteps: state.preparationSteps,
