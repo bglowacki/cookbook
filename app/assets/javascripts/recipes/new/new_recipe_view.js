@@ -1,10 +1,8 @@
 import React from "react";
 import NewRecipeForm from "./components/new_recipe_form";
 import { connect } from 'react-redux';
-import {addPreparationStepInput, changePreparationStep} from './app/preparation_steps/actions';
-import {addIngredientInput, changeIngredient} from './app/ingredients/actions';
-import {changeName} from './app/name/actions';
-
+import {addPreparationStepInput} from './app/preparation_steps/actions';
+import {addIngredientInput} from './app/ingredients/actions';
 
 class NewRecipeView extends React.Component {
   render = () => {
@@ -17,19 +15,9 @@ class NewRecipeView extends React.Component {
           addIngredientInput={ () => {
             this.props.dispatch(addIngredientInput())
           }}
-          changeIngredient={ (ingredientId, ingredientName, quantity) => {
-            this.props.dispatch(changeIngredient(ingredientId, ingredientName, quantity))
-          }}
           addPreparationStepInput={() => {
             this.props.dispatch(addPreparationStepInput())
           }}
-          changePreparationStep={(preparationStepId, preparationStepDescription) => {
-            this.props.dispatch(changePreparationStep(preparationStepId, preparationStepDescription))
-          }}
-          changeName={(name) => {
-            this.props.dispatch(changeName(name))
-          }}
-
         />
       </div>
     )

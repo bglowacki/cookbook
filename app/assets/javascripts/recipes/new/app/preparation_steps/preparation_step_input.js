@@ -2,12 +2,17 @@ import React from "react";
 import _ from 'lodash';
 
 import {Input} from 'react-bootstrap'
+import {changePreparationStep} from './actions'
 
 export default class PreparationStepInput extends React.Component {
+  static contextTypes = {
+    store: React.PropTypes.object
+  };
+
   changePreparationStep = (e) => {
     var preparationStepId = _.keys(this.refs)[0];
     var preparationStepDescription = this.refs[preparationStepId].refs.input.value;
-    this.props.changePreparationStep(preparationStepId, preparationStepDescription);
+    this.context.store.dispatch(changePreparationStep(preparationStepId, preparationStepDescription));
   };
 
   render = () => {

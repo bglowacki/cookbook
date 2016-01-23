@@ -2,8 +2,13 @@ import React from "react";
 import _ from 'lodash';
 
 import {Input} from 'react-bootstrap'
+import {changeIngredient} from './actions'
 
 export default class IngredientInput extends React.Component {
+  static contextTypes = {
+    store: React.PropTypes.object
+  };
+
   changeIngredient = (e) => {
     var keys = _.keys(this.refs);
     var ingredientKey = _.find(keys, function(key) { return /^ingredient.+/.test(key) });
@@ -11,7 +16,7 @@ export default class IngredientInput extends React.Component {
     var ingredientId = ingredientKey;
     var ingredientName = this.refs[ingredientKey].refs.input.value;
     var ingredientQuantity = this.refs[quantityKey].refs.input.value;
-    this.props.changeIngredient(ingredientId, ingredientName, ingredientQuantity)
+    this.context.store.dispatch(changeIngredient(ingredientId, ingredientName, ingredientQuantity));
   };
 
   render() {
