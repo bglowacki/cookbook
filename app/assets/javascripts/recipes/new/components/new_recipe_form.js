@@ -38,9 +38,16 @@ class IngredientInput extends React.Component {
 }
 
 class PreparationStepInput extends React.Component {
+  changePreparationStep = (e) => {
+    var preparationStepId = _.keys(this.refs)[0];
+    console.log(preparationStepId)
+    var preparationStepDescription = this.refs[preparationStepId].refs.input.value;
+    this.props.changePreparationStep(preparationStepId, preparationStepDescription)
+  };
+
   render = () => {
     return(
-      <Input type="textarea" ref={"step_" + this.props.index} className="preparation-step-input" label={"Step " + this.props.index}/>
+      <Input type="textarea" onChange={this.changePreparationStep} ref={"prepearationStep_" + this.props.index} className="preparation-step-input" label={"Step " + this.props.index}/>
     )
   };
 }
@@ -51,7 +58,7 @@ class NewRecipeForm extends React.Component {
   };
 
   renderPreparationSteps = () => {
-    return(_.times(this.props.numberOfPreparationSteps, (index) => <PreparationStepInput key={"preparation_step_" + (index+1)} index={index + 1}/>))
+    return(_.times(this.props.numberOfPreparationSteps, (index) => <PreparationStepInput changePreparationStep={this.props.changePreparationStep} key={"preparation_step_" + (index+1)} index={index + 1}/>))
   };
 
   render = () => {
