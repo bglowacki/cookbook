@@ -1,60 +1,15 @@
 import React from "react";
-import {Input, Button} from 'react-bootstrap'
 import _ from 'lodash';
 
-class AddNewInput extends React.Component {
-  onClick = () => {
-    this.props.onClick()
-  };
-
-  render = () => {
-    return(<Button onClick={this.onClick}><i className="fa fa-plus-circle"/></Button>)
-  };
-}
-
-class IngredientInput extends React.Component {
-  onChange = (e) => {
-    var keys = _.keys(this.refs);
-    var ingredientKey = _.find(keys, function(key) { return /^ingredient.+/.test(key) });
-    var quantityKey = _.find(keys, function(key) { return /quantity.+/.test(key) });
-    var ingredientId = ingredientKey;
-    var ingredientName = this.refs[ingredientKey].refs.input.value;
-    var ingredientQuantity = this.refs[quantityKey].refs.input.value;
-    this.props.onChange(ingredientId, ingredientName, ingredientQuantity)
-  };
-
-  render() {
-    return (
-      <div className="form-inline clearfix">
-        <div className="col-xs-2 col-xs-offset-1">
-          <Input type="text" onChange={this.onChange} ref={"ingredient_" + this.props.index} className="ingredient-input" label={"Ingredient " + this.props.index}/>
-        </div>
-        <div className="col-xs-2 col-xs-offset-1">
-          <Input type="text" onChange={this.onChange} ref={"quantity_" + this.props.index} label="Quantity" className="ingredient-quantity-input"/>
-        </div>
-      </div>
-    )
-  }
-}
-
-class PreparationStepInput extends React.Component {
-  changePreparationStep = (e) => {
-    var preparationStepId = _.keys(this.refs)[0];
-    console.log(preparationStepId)
-    var preparationStepDescription = this.refs[preparationStepId].refs.input.value;
-    this.props.changePreparationStep(preparationStepId, preparationStepDescription)
-  };
-
-  render = () => {
-    return(
-      <Input type="textarea" onChange={this.changePreparationStep} ref={"prepearationStep_" + this.props.index} className="preparation-step-input" label={"Step " + this.props.index}/>
-    )
-  };
-}
+import {Input} from 'react-bootstrap'
+import PreparationStepInput from './preparation_step_input'
+import IngredientInput from './ingredient_input'
+import NameInput from './name_input'
+import AddNewInputButton from './add_new_input_button'
 
 class NewRecipeForm extends React.Component {
   renderIngredients = () => {
-    return(_.times(this.props.numberOfIngredients, (index) => <IngredientInput onChange={this.props.changeIngredient} key={"ingredient_"+(index+1)} index={index + 1}/>))
+    return(_.times(this.props.numberOfIngredients, (index) => <IngredientInput changeIngredient={this.props.changeIngredient} key={"ingredient_"+(index+1)} index={index + 1}/>))
   };
 
   renderPreparationSteps = () => {
@@ -63,15 +18,15 @@ class NewRecipeForm extends React.Component {
 
   render = () => {
     return(<form className="form-horizontal">
-      <Input type="text" placeholder="Dish name" label="Name"/>
+      <NameInput changeName={this.props.changeName}/>
       <div className="preparation-steps">
         {this.renderPreparationSteps()}
       </div>
-      <AddNewInput onClick={this.props.addPreparationStepInput} />
+      <AddNewInputButton onClick={this.props.addPreparationStepInput} />
       <div className="ingredient-list">
         {this.renderIngredients()}
       </div>
-      <AddNewInput onClick={this.props.addIngredientInput} />
+      <AddNewInputButton onClick={this.props.addIngredientInput} />
     </form>)
   };
 }

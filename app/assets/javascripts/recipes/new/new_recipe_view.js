@@ -3,6 +3,7 @@ import NewRecipeForm from "./components/new_recipe_form";
 import { connect } from 'react-redux';
 import {addPreparationStepInput, changePreparationStep} from './app/preparation_steps/actions';
 import {addIngredientInput, changeIngredient} from './app/ingredients/actions';
+import {changeName} from './app/name/actions';
 
 
 class NewRecipeView extends React.Component {
@@ -25,6 +26,9 @@ class NewRecipeView extends React.Component {
           changePreparationStep={(preparationStepId, preparationStepDescription) => {
             this.props.dispatch(changePreparationStep(preparationStepId, preparationStepDescription))
           }}
+          changeName={(name) => {
+            this.props.dispatch(changeName(name))
+          }}
 
         />
       </div>
@@ -33,10 +37,10 @@ class NewRecipeView extends React.Component {
 }
 
 function run(state) {
-  console.log(state);
   return {
     ingredients: state.ingredients,
-    preparationSteps: state.preparationSteps
+    preparationSteps: state.preparationSteps,
+    name: state.name
   }
 }
 
