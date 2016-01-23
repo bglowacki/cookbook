@@ -12,7 +12,7 @@ export const ingredients = (ingredients = {numberOfIngredients: 3, ingredientsLi
         numberOfIngredients: ingredients.numberOfIngredients,
         ingredientsList: ingredients.ingredientsList
       };
-      newIngredients.ingredientsList[action.ingredientId] = [action.ingredientName, action.ingredientQuantity];
+      newIngredients.ingredientsList[action.ingredientId] = [action.ingredientName, action.ingredientQuantity, action.ingredientUnit];
       return newIngredients;
     default:
       return ingredients;
