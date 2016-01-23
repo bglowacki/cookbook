@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  def index
+  def new
 
   end
 end
