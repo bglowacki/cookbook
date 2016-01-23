@@ -1,4 +1,5 @@
 import {CHANGE_PREPARATION_STEP, ADD_PREPARATION_STEP_INPUT} from './actions';
+import PreparationStep from '../../../../models/preparation_step'
 
 
 export const preparationSteps = (preparationSteps = {numberOfPreparationSteps: 3, preparationStepsList: {}}, action) => {
@@ -10,7 +11,7 @@ export const preparationSteps = (preparationSteps = {numberOfPreparationSteps: 3
       });
     case CHANGE_PREPARATION_STEP:
       var preparationStepsList = preparationSteps.preparationStepsList;
-      preparationStepsList[action.preparationStepId] = action.preparationStepDescription;
+      preparationStepsList[action.preparationStepId] = new PreparationStep(action.preparationStepDescription);
       return({
         numberOfPreparationSteps: preparationSteps.numberOfPreparationSteps,
         preparationStepsList: preparationStepsList
