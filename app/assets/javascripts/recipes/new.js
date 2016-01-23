@@ -5,7 +5,7 @@ import 'font-awesome/css/font-awesome.css';
 import NewRecipeView from './new/new_recipe_view';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import newRecipeApp from './new/app/reducers'
+import newRecipeApp from './new/new_recipe_app'
 
 
 let store = createStore(newRecipeApp);

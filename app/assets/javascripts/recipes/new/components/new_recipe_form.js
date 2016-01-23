@@ -2,13 +2,13 @@ import React from "react";
 import _ from 'lodash';
 
 import {Input} from 'react-bootstrap'
-import PreparationStepInput from '../app/preparation_steps/preparation_step_input'
-import IngredientInput from '../app/ingredients/ingredient_input'
-import NameInput from '../app/name/name_input'
+import PreparationStepInput from './preparation_steps/preparation_step_input'
+import IngredientInput from './ingredients/ingredient_input'
+import NameInput from './name/name_input'
 import AddNewInputButton from './add_new_input_button'
 
-import {addPreparationStepInput} from '../app/preparation_steps/actions'
-import {addIngredientInput} from '../app/ingredients/actions'
+import {addPreparationStepInput} from './preparation_steps/actions'
+import {addIngredientInput} from './ingredients/actions'
 
 class NewRecipeForm extends React.Component {
 
