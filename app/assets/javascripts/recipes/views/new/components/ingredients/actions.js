@@ -7,10 +7,10 @@ export function addIngredientInput() {
   )
 }
 
-export function changeIngredient(ingredientId, ingredientName, ingredientQuantity, ingredientUnit) {
+export function changeIngredient(ingredientOrder, ingredientName, ingredientQuantity, ingredientUnit) {
   return({
     type: CHANGE_INGREDIENT,
-    ingredientId,
+    ingredientOrder,
     ingredientName,
     ingredientQuantity,
     ingredientUnit

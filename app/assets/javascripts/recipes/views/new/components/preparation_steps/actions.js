@@ -7,10 +7,10 @@ export function addPreparationStepInput() {
   })
 }
 
-export function changePreparationStep(preparationStepId, preparationStepDescription) {
+export function changePreparationStep(preparationStepOrder, preparationStepDescription) {
   return({
     type: CHANGE_PREPARATION_STEP,
-    preparationStepId: preparationStepId,
+    preparationStepOrder: preparationStepOrder,
     preparationStepDescription: preparationStepDescription
   })
 }

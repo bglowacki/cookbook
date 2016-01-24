@@ -11,7 +11,7 @@ export const preparationSteps = (preparationSteps = {numberOfPreparationSteps: 3
       });
     case CHANGE_PREPARATION_STEP:
       var preparationStepsList = preparationSteps.preparationStepsList;
-      preparationStepsList[action.preparationStepId] = new PreparationStep(action.preparationStepDescription);
+      preparationStepsList[action.preparationStepOrder] = new PreparationStep(action.preparationStepDescription);
       return({
         numberOfPreparationSteps: preparationSteps.numberOfPreparationSteps,
         preparationStepsList: preparationStepsList

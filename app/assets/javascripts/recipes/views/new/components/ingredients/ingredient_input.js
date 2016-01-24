@@ -28,11 +28,11 @@ export default class IngredientInput extends React.Component {
     var ingredientKey = _.find(keys, function(key) { return /^ingredient.+/.test(key) });
     var quantityKey = _.find(keys, function(key) { return /quantity.+/.test(key) });
     var unitKey = _.find(keys, function(key) { return /unit.+/.test(key) });
-    var ingredientId = ingredientKey;
+    var ingredientOrder = ingredientKey;
     var ingredientName = this.refs[ingredientKey].refs.input.value;
     var ingredientQuantity = this.refs[quantityKey].refs.input.value;
     var ingredientUnit = this.refs[unitKey].refs.input.value;
-    this.context.store.dispatch(changeIngredient(ingredientId, ingredientName, ingredientQuantity, ingredientUnit));
+    this.context.store.dispatch(changeIngredient(ingredientOrder, ingredientName, ingredientQuantity, ingredientUnit));
   };
 
 

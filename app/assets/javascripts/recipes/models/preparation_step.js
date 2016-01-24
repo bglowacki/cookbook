@@ -1,5 +1,5 @@
 export default class PreparationStep {
-  constructor(descripion) {
-    this.description = descripion
+  constructor(description) {
+    this.description = description
   }
 }

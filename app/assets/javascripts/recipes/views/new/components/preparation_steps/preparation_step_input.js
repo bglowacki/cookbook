@@ -10,9 +10,9 @@ export default class PreparationStepInput extends React.Component {
   };
 
   changePreparationStep = (e) => {
-    var preparationStepId = _.keys(this.refs)[0];
-    var preparationStepDescription = this.refs[preparationStepId].refs.input.value;
-    this.context.store.dispatch(changePreparationStep(preparationStepId, preparationStepDescription));
+    var preparationStepOrder = _.keys(this.refs)[0];
+    var preparationStepDescription = this.refs[preparationStepOrder].refs.input.value;
+    this.context.store.dispatch(changePreparationStep(preparationStepOrder, preparationStepDescription));
   };
 
   render = () => {

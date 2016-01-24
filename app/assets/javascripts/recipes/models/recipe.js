@@ -10,18 +10,17 @@ export default class Recipe {
   toParams = () => {
     return({
       name: this.name,
-      ingredientList: this.ingredientListParams()
+      ingredientsList: this.ingredientsListParams(),
+      preparationStepsList: this.preparationStepsListParams()
     })
   };
 
-  ingredientListParams = () => {
+  ingredientsListParams = () => {
     return _
       .chain(this.ingredientsList)
-      .map((ingredient, ingredientId) => {
-        console.log(ingredientId);
-        console.log(ingredient);
+      .map((ingredient, ingredientOrder) => {
         return {
-          id: ingredientId,
+          orderNumber: this.takeNumber(ingredientOrder),
           name: ingredient.name,
           quantity: ingredient.quantity,
           unit: ingredient.unit
@@ -29,5 +28,22 @@ export default class Recipe {
       })
       .values()
       .value();
+  };
+
+  preparationStepsListParams= () => {
+    return _
+      .chain(this.preparationStepsList)
+      .map((preparationStep, preparationStepOrder) => {
+        return {
+          orderNumber: this.takeNumber(preparationStepOrder),
+          description: preparationStep.description
+        }
+      })
+      .values()
+      .value()
+  };
+
+  takeNumber = (string) => {
+    return string.match(/\d+/)[0]
   };
 };
