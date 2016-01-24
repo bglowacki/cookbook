@@ -6,6 +6,7 @@ import PreparationStepInput from './preparation_steps/preparation_step_input'
 import IngredientInput from './ingredients/ingredient_input'
 import NameInput from './name/name_input'
 import AddNewInputButton from './add_new_input_button'
+import SubmitButton from "./submit_button/submit_button"
 
 import {addPreparationStepInput} from './preparation_steps/actions'
 import {addIngredientInput} from './ingredients/actions'
@@ -43,6 +44,7 @@ class NewRecipeForm extends React.Component {
         {this.renderIngredients()}
       </div>
       <AddNewInputButton onClick={this.addIngredientInput} />
+      <SubmitButton recipe={this.props.recipe} />
     </form>)
   };
 }

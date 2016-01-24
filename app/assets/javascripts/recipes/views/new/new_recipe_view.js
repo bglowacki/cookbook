@@ -1,6 +1,8 @@
 import React from "react";
-import NewRecipeForm from "./components/new_recipe_form";
 import { connect } from 'react-redux';
+import Recipe from '../../models/recipe'
+
+import NewRecipeForm from "./components/new_recipe_form";
 
 class NewRecipeView extends React.Component {
   render = () => {
@@ -8,8 +10,9 @@ class NewRecipeView extends React.Component {
       <div id="new_recipe" className="container">
         <h1>Add new recipe</h1>
         <NewRecipeForm
-          numberOfIngredients={this.props.ingredients.numberOfIngredients}
-          numberOfPreparationSteps={this.props.preparationSteps.numberOfPreparationSteps}
+          numberOfIngredients={this.props.numberOfIngredients}
+          numberOfPreparationSteps={this.props.numberOfPreparationSteps}
+          recipe={this.props.recipe}
         />
       </div>
     )
@@ -17,10 +20,10 @@ class NewRecipeView extends React.Component {
 }
 
 function run(state) {
-  console.log(state);
   return {
-    ingredients: state.ingredients,
-    preparationSteps: state.preparationSteps,
+    recipe: new Recipe(state.name, state.ingredients.ingredientsList, state.preparationSteps.preparationStepsList),
+    numberOfIngredients: state.ingredients.numberOfIngredients,
+    numberOfPreparationSteps: state.preparationSteps.numberOfPreparationSteps,
     name: state.name
   }
 }
