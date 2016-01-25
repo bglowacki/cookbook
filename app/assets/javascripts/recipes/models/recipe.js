@@ -10,8 +10,8 @@ export default class Recipe {
   toParams = () => {
     return({
       name: this.name,
-      ingredientsList: this.ingredientsListParams(),
-      preparationStepsList: this.preparationStepsListParams()
+      ingredients: this.ingredientsListParams(),
+      preparation_steps: this.preparationStepsListParams()
     })
   };
 
@@ -20,7 +20,7 @@ export default class Recipe {
       .chain(this.ingredientsList)
       .map((ingredient, ingredientOrder) => {
         return {
-          orderNumber: this.takeNumber(ingredientOrder),
+          order_number: this.takeNumber(ingredientOrder),
           name: ingredient.name,
           quantity: ingredient.quantity,
           unit: ingredient.unit
@@ -35,7 +35,7 @@ export default class Recipe {
       .chain(this.preparationStepsList)
       .map((preparationStep, preparationStepOrder) => {
         return {
-          orderNumber: this.takeNumber(preparationStepOrder),
+          order_number: this.takeNumber(preparationStepOrder),
           description: preparationStep.description
         }
       })
