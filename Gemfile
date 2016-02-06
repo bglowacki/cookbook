@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml-rails'
 gem 'pg'
 gem 'virtus'
+gem 'mechanize'
 
 group :development, :test do
   gem 'byebug'
