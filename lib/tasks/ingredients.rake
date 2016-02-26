@@ -14,12 +14,19 @@ namespace :ingredients do
       rows = table.search("tr")[1..-1]
       rows.map do |row|
         cells = row.search("td")
-        name = cells[0]
-        kcal = cells[1]
-        carbs = cells[2]
-        protein = cells[3]
-        fat = cells[4]
-        ingredients << [name.text.strip, kcal.text.strip, carbs.text.strip, protein.text.strip, fat.text.strip]
+        name = cells[0].text.strip
+        kcal = cells[1].text.strip.gsub(/[              ]/, "").to_i
+        carbs = cells[2].text.strip.gsub(/[              ]/, "").to_f
+        protein = cells[3].text.strip.gsub(/[              ]/, "").to_f
+        fat = cells[4].text.strip.gsub(/[              ]/, "").to_f
+
+        Ingredient.create!(
+          name:  name,
+          kcal: kcal,
+          carbs: carbs,
+          protein: protein,
+          fat: fat
+        )
       end
     end
     puts ingredients.inspect

@@ -3,11 +3,11 @@ development:
   encoding: unicode
   database: cookbook_development
   pool: 5
-  username: bartekglowacki
+  username: bartek
 
 test:
   adapter: postgresql
   encoding: unicode
   database: cookbook_test
   pool: 5
-  username: bartekglowacki
+  username: bartek
