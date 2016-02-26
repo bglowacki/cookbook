@@ -4,15 +4,13 @@ export const CHANGE_INGREDIENT = 'CHANGE_INGREDIENT';
 export function addIngredientInput() {
   return (
   {type: ADD_INGREDIENT_INPUT}
-  )
+  );
 }
 
-export function changeIngredient(ingredientOrder, ingredientName, ingredientQuantity, ingredientUnit) {
+export function changeIngredient(ingredientOrder, ingredientName) {
   return({
     type: CHANGE_INGREDIENT,
     ingredientOrder,
-    ingredientName,
-    ingredientQuantity,
-    ingredientUnit
-  })
+    ingredientName
+  });
 }

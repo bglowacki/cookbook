@@ -21,9 +21,7 @@ export default class Recipe {
       .map((ingredient, ingredientOrder) => {
         return {
           order_number: this.takeNumber(ingredientOrder),
-          name: ingredient.name,
-          quantity: ingredient.quantity,
-          unit: ingredient.unit
+          name: ingredient.name
         }
       })
       .values()

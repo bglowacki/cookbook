@@ -1,7 +1,5 @@
 export default class Ingredient {
-  constructor(name, quantity, unit) {
+  constructor(name) {
     this.name = name;
-    this.quantity = quantity;
-    this.unit = unit;
   }
 };

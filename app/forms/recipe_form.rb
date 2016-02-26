@@ -27,7 +27,7 @@ module Forms
 
     def build_ingredients
       ingredients.values.map do |ingredient|
-        Ingredient.new(ingredient["order_number"], ingredient['name'], ingredient['quantity'], ingredient['unit'])
+        Ingredient.new(ingredient['name'])
       end
     end
 
