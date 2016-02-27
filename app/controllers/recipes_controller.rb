@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
     recipes = Recipe.all
     respond_to do |format|
       format.html {}
-      format.json {render json: recipes, each_serializer: RecipeSerializer}
+      format.json {render json: recipes, each_serializer: RecipeSerializer, root: false}
 
     end
   end
