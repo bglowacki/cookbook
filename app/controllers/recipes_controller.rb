@@ -1,4 +1,14 @@
 class RecipesController < ApplicationController
+
+  def index
+    recipes = Recipe.all
+    respond_to do |format|
+      format.html {}
+      format.json {render json: recipes, each_serializer: RecipeSerializer}
+
+    end
+  end
+
   def new
 
   end

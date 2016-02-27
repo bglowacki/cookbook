@@ -5,8 +5,11 @@ var bourbon = require('node-bourbon');
 var webpackConf = {
   context: __dirname + '/app/assets/javascripts',
   entry: {
-    "dist/recipes": [
+    "dist/new_recipe": [
       "./recipes/new.js"
+    ],
+    "dist/recipes": [
+      "./recipes/index.js"
     ]
   },
   output: {

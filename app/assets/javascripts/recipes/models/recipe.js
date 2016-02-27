@@ -28,7 +28,7 @@ export default class Recipe {
       .value();
   };
 
-  preparationStepsListParams= () => {
+  preparationStepsListParams = () => {
     return _
       .chain(this.preparationStepsList)
       .map((preparationStep, preparationStepOrder) => {

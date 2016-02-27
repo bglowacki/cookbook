@@ -13,6 +13,8 @@ gem 'haml-rails'
 gem 'pg'
 gem 'virtus'
 gem 'mechanize'
+gem 'active_model_serializers'
+
 
 group :development, :test do
   gem 'byebug'

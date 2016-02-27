@@ -23,7 +23,8 @@ module Cookbook
     config.eager_load_paths += [
       Rails.root.join("app", "repositories"),
       Rails.root.join("app", "forms"),
-      Rails.root.join("app", "services")
+      Rails.root.join("app", "services"),
+      Rails.root.join("app", "serializers")
     ]
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
