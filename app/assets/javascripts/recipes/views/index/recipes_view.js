@@ -8,7 +8,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
 class RecipesView extends React.Component {
   recipesList = () => {
     return _.map(this.props.recipes, function(recipe) {
-      return <ListItem>{recipe.name}</ListItem>
+      return <ListItem key={recipe.source_url}>{recipe.name}</ListItem>
     });
   };
 

@@ -20,11 +20,13 @@ class NewRecipeView extends React.Component {
 }
 
 function run(state) {
+  console.log(state)
   return {
     recipe: new Recipe(state.name, state.ingredients.ingredientsList, state.preparationSteps.preparationStepsList),
     numberOfIngredients: state.ingredients.numberOfIngredients,
     numberOfPreparationSteps: state.preparationSteps.numberOfPreparationSteps,
-    name: state.name
+    name: state.name,
+    formState: state.formState
   }
 }
 

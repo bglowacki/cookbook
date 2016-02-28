@@ -1,15 +1,15 @@
 module Services
   module Recipes
     class Downloader
-      def call(recipe_page_url)
+      def call(recipe_url)
         agent = ::Mechanize.new
-        page = agent.get(recipe_page_url)
+        page = agent.get(recipe_url)
         name = page.search(".przepis.page-header").text
         kcal = get_kcal(page)
         portions_quantity = get_portions(page)
         ingredients = get_ingredients(page)
         preparation_steps = get_preparation_steps(page)
-        Recipe.new(name: name, kcal: kcal, portions_quantity: portions_quantity, ingredients: ingredients, preparation_steps: preparation_steps).save!
+        Recipe.new(name: name, kcal: kcal, portions_quantity: portions_quantity, ingredients: ingredients, preparation_steps: preparation_steps, source_url: recipe_url).save!
       end
 
       private

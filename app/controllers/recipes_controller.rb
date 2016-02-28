@@ -5,7 +5,6 @@ class RecipesController < ApplicationController
     respond_to do |format|
       format.html {}
       format.json {render json: recipes, each_serializer: RecipeSerializer, root: false}
-
     end
   end
 

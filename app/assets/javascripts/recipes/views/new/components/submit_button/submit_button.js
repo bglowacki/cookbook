@@ -1,10 +1,14 @@
 import React from 'react'
 import {Button} from 'react-bootstrap'
-import {submit} from './actions'
+import {submitForm} from './actions'
 
 export default class SubmitButton extends React.Component {
+  static contextTypes = {
+    store: React.PropTypes.object
+  };
+
   submit = () => {
-    submit(this.props.recipe)
+    this.context.store.dispatch(submitForm(this.props.recipe))
   };
 
   render = () => {
