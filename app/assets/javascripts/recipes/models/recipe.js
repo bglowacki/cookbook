@@ -1,10 +1,13 @@
 import _ from 'lodash';
 
 export default class Recipe {
-  constructor(name, ingredientsList, preparationStepsList) {
+  constructor(name, ingredientsList, preparationStepsList, kcal=0, portionsQuantity=0, sourceUrl=undefined) {
     this.name = name;
     this.ingredientsList = ingredientsList;
     this.preparationStepsList = preparationStepsList;
+    this.kcal = kcal;
+    this.portionsQuantity = portionsQuantity;
+    this.sourceUrl = sourceUrl
   }
 
   toParams = () => {

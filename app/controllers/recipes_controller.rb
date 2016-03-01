@@ -9,7 +9,13 @@ class RecipesController < ApplicationController
   end
 
   def show
-    recipe = recipe_repository.find(params[:id])
+    respond_to do |format|
+      format.html {}
+      format.json {
+        recipe = recipe_repository.find(params[:id])
+        render json: recipe
+      }
+    end
   end
 
   def new

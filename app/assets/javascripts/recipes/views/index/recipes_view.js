@@ -12,9 +12,8 @@ class RecipesView extends React.Component {
   };
 
   recipesList = () => {
-    var self = this
+    var self = this;
     return _.map(this.props.recipes, function(recipe) {
-      console.log(recipe.source_url);
       return <ListItem onClick={self.goToRecipe.bind(this, recipe)} key={recipe.id}>{recipe.name}</ListItem>
     });
   };
