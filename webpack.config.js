@@ -10,6 +10,9 @@ var webpackConf = {
     ],
     "dist/recipes": [
       "./recipes/index.js"
+    ],
+    "dist/show_recipe": [
+      "./recipes/show.js"
     ]
   },
   output: {

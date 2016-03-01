@@ -8,9 +8,14 @@ class RecipesController < ApplicationController
     end
   end
 
+  def show
+    recipe = recipe_repository.find(params[:id])
+  end
+
   def new
 
   end
+
 
   def create
     create_recipe_service.run(params)
@@ -24,6 +29,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_repository
-    @recipe_repository ||= Repositories::Recipe.new
+    @recipe_repository ||= Repositories::RecipeDb.new
   end
 end

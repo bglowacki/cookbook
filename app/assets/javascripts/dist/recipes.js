@@ -48776,11 +48776,15 @@
 	      args[_key] = arguments[_key];
 	    }
 
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(RecipesView)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.recipesList = function () {
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(RecipesView)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.goToRecipe = function (recipe, e) {
+	      window.location.href = '/recipes/' + recipe.id;
+	    }, _this.recipesList = function () {
+	      var self = _this;
 	      return _lodash2.default.map(_this.props.recipes, function (recipe) {
+	        console.log(recipe.source_url);
 	        return _react2.default.createElement(
 	          _listItem2.default,
-	          { key: recipe.source_url },
+	          { onClick: self.goToRecipe.bind(this, recipe), key: recipe.id },
 	          recipe.name
 	        );
 	      });

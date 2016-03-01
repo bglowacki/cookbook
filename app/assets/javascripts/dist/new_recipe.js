@@ -54077,7 +54077,7 @@
 	    }
 
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(SubmitButton)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.submit = function () {
-	      (0, _actions.submitForm)(_this.props.recipe);
+	      _this.context.store.dispatch((0, _actions.submitForm)(_this.props.recipe));
 	    }, _this.render = function () {
 	      return _react2.default.createElement(
 	        _reactBootstrap.Button,
@@ -54090,6 +54090,9 @@
 	  return SubmitButton;
 	}(_react2.default.Component);
 
+	SubmitButton.contextTypes = {
+	  store: _react2.default.PropTypes.object
+	};
 	exports.default = SubmitButton;
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/bartek/Library/Mobile Documents/com~apple~CloudDocs/Projects/cookbook/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "submit_button.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -54116,8 +54119,9 @@
 	var RECIPE_SAVED = exports.RECIPE_SAVED = 'RECIPE_SAVED';
 
 	function submitForm(form) {
-	  console.log("after");
 	  return function (dispatch) {
+	    console.log("after");
+
 	    dispatch(submitting());
 	    (0, _backend.submit)(form).then(function (response) {
 	      dispatch(recipeSaved(response));
@@ -54167,17 +54171,19 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function submit(recipe) {
+	  var deferred = _q2.default.defer();
 	  _jquery2.default.ajax({
 	    url: "/recipes",
 	    method: "post",
 	    data: recipe.toParams(),
 	    success: function success(response) {
-	      console.log(response);
+	      deferred.resolve(response);
 	    },
 	    error: function error(_error) {
-	      console.log(_error);
+	      deferred.reject(_error);
 	    }
 	  });
+	  return deferred.promise;
 	}
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/bartek/Library/Mobile Documents/com~apple~CloudDocs/Projects/cookbook/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "backend.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }

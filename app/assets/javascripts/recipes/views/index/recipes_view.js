@@ -6,9 +6,16 @@ import ListItem from 'material-ui/lib/lists/list-item';
 
 
 class RecipesView extends React.Component {
+
+  goToRecipe = (recipe, e) => {
+    window.location.href = `/recipes/${recipe.id}`
+  };
+
   recipesList = () => {
+    var self = this
     return _.map(this.props.recipes, function(recipe) {
-      return <ListItem key={recipe.source_url}>{recipe.name}</ListItem>
+      console.log(recipe.source_url);
+      return <ListItem onClick={self.goToRecipe.bind(this, recipe)} key={recipe.id}>{recipe.name}</ListItem>
     });
   };
 
