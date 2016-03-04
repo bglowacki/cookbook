@@ -20222,7 +20222,6 @@
 	}(_react2.default.Component);
 
 	function run(state) {
-	  console.log(state);
 	  return {
 	    recipe: new _recipe2.default(state.name, state.ingredients.ingredientsList, state.preparationSteps.preparationStepsList),
 	    numberOfIngredients: state.ingredients.numberOfIngredients,
@@ -21581,7 +21580,12 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var Recipe = function Recipe(name, ingredientsList, preparationStepsList) {
+	  var kcal = arguments.length <= 3 || arguments[3] === undefined ? 0 : arguments[3];
+
 	  var _this = this;
+
+	  var portionsQuantity = arguments.length <= 4 || arguments[4] === undefined ? 0 : arguments[4];
+	  var sourceUrl = arguments.length <= 5 || arguments[5] === undefined ? undefined : arguments[5];
 
 	  _classCallCheck(this, Recipe);
 
@@ -21618,6 +21622,9 @@
 	  this.name = name;
 	  this.ingredientsList = ingredientsList;
 	  this.preparationStepsList = preparationStepsList;
+	  this.kcal = kcal;
+	  this.portionsQuantity = portionsQuantity;
+	  this.sourceUrl = sourceUrl;
 	};
 
 	exports.default = Recipe;
