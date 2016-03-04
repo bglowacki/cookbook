@@ -10,6 +10,8 @@ import FlatButton from 'material-ui/lib/flat-button';
 import CardText from 'material-ui/lib/card/card-text';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
+import Divider from 'material-ui/lib/divider';
+
 
 import _ from 'lodash';
 
@@ -29,8 +31,17 @@ class ShowView extends React.Component {
   };
 
   ingredientsList = () => {
-    return _.map(this.props.data.recipe.ingredientsList, function(ingredient) {
-      return <ListItem key={ingredient.name}>{ingredient.name}</ListItem>
+    return _.map(this.props.data.recipe.ingredientsList, function(ingredients, ingredientSection, index) {
+      return(
+        <div key={ingredientSection}>
+          <List subheader={ingredientSection}>
+            {_.map(ingredients, function(ingredient) {
+              return <ListItem key={ingredient.name}>{ingredient.name}</ListItem>
+            })}
+          </List>
+          <Divider key="divider" />
+        </div>
+      )
     })
   };
 

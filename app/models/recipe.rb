@@ -1,13 +1,17 @@
 class Recipe < ActiveRecord::Base
 
-  def ingredients=(ingredients)
-    hashed_ingredients = YAML.dump(ingredients.map(&:to_hash))
-    write_attribute(:ingredients, hashed_ingredients)
+  def ingredients=(ingredient_sections)
+    list = ingredient_sections.each_with_object({}) do |(name, ingredients), ingredient_list|
+      ingredient_list[name] = ingredients.map(&:to_hash)
+    end
+    write_attribute(:ingredients, YAML.dump(list))
   end
 
   def ingredients
-    YAML.load(read_attribute(:ingredients)).map do |ingredient|
-      Ingredient.new(ingredient[:name])
+    YAML.load(read_attribute(:ingredients)).each_with_object({}) do |(name, ingredients), ingredients_list|
+      ingredients_list[name] = ingredients.map do |ingredient|
+        Ingredient.new(ingredient[:name])
+      end
     end
   end
 

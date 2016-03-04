@@ -28,9 +28,20 @@ module Services
       end
 
       def get_ingredients(page)
-        page.search(".field-name-field-skladniki li").map do |ingredient|
-          Ingredient.new(ingredient.text.strip)
+        ingredients = {}
+        page.search(".field-name-field-skladniki ul").map.each_with_index do |ingredient_section, index|
+          if index == 0
+            ingredients["main"] = ingredient_section.search("li").map do |ingredient|
+              Ingredient.new(ingredient.text.strip)
+            end
+          else
+            section_name = page.search(".field-name-field-skladniki div.wyroznione")[(index - 1)].text.strip
+            ingredients[section_name] = ingredient_section.search("li").map do |ingredient|
+              Ingredient.new(ingredient.text.strip)
+            end
+          end
         end
+        ingredients
       end
 
       def get_preparation_steps(page)
