@@ -10,8 +10,8 @@ module Services
         if params[:input_type] == "recipeUrl"
           @recipe_downloader.call(params[:recipe])
         else
-          # recipe = Forms::RecipeForm.new(params).build
-          # @recipe_repository.create(recipe)
+          recipe = Forms::RecipeForm.new(params).build
+          @recipe_repository.create(recipe)
         end
 
 
