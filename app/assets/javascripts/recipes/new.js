@@ -1,16 +1,20 @@
-import ReactDOM from 'react-dom';
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
-import NewRecipeView from './views/new/new_recipe_view';
+
+import ReactDOM from 'react-dom';
+import React from 'react';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import newRecipeApp from './views/new/new_recipe_app'
 import thunkMiddleware from 'redux-thunk'
 
+import NewRecipeView from './views/new/new_recipe_view';
+import newRecipeApp from './views/new/new_recipe_app'
+import NavigationView from '../navigation/navigation_view'
+import navigationApp from '../navigation/navigation_app'
 
 
-let store = createStore(
+
+let newRecipeStore = createStore(
   newRecipeApp,
   applyMiddleware(
     thunkMiddleware
@@ -19,8 +23,21 @@ let store = createStore(
 
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={newRecipeStore}>
     <NewRecipeView />
   </Provider>,
   document.getElementById("container")
 );
+
+
+let navigationStore = createStore(
+  navigationApp
+);
+
+ReactDOM.render(
+  <Provider store={navigationStore}>
+    <NavigationView />
+  </Provider>,
+  document.getElementById("navigation")
+);
+
