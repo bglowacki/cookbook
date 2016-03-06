@@ -1,6 +1,9 @@
 import React from "react";
 
-import {Button} from 'react-bootstrap'
+import FloatingActionButton from 'material-ui/lib/floating-action-button';
+import ContentAdd from 'material-ui/lib/svg-icons/content/add';
+
+
 
 export default class AddNewInputButton extends React.Component {
   onClick = () => {
@@ -8,6 +11,10 @@ export default class AddNewInputButton extends React.Component {
   };
 
   render = () => {
-    return(<Button onClick={this.onClick}><i className="fa fa-plus-circle"/></Button>)
+    return(
+      <FloatingActionButton onClick={this.onClick}>
+        <ContentAdd />
+      </FloatingActionButton>
+    )
   };
 }

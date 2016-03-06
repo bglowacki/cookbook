@@ -1,7 +1,7 @@
 import React from "react";
 import _ from 'lodash';
 
-import {Input} from 'react-bootstrap'
+import TextField from 'material-ui/lib/text-field';
 import {changePreparationStep} from './actions'
 
 export default class PreparationStepInput extends React.Component {
@@ -17,7 +17,18 @@ export default class PreparationStepInput extends React.Component {
 
   render = () => {
     return(
-      <Input type="textarea" onChange={this.changePreparationStep} ref={"prepearationStep_" + this.props.index} className="preparation-step-input" label={"Step " + this.props.index}/>
+      <div className="form-inline clearfix">
+        <div className="col-xs-2 col-xs-offset-1">
+          <TextField
+            multiLine={true}
+            type="text"
+            onChange={this.changePreparationStep}
+            ref={"prepearationStep_" + this.props.index}
+            className="preparation-step-input"
+            floatingLabelText = {"Step " + this.props.index}
+          />
+        </div>
+      </div>
     )
   };
 }
