@@ -19,7 +19,6 @@ module Services
           end
 
         downloader.call(recipe_url)
-
       end
     end
   end

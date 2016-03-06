@@ -10,6 +10,7 @@ export function submitForm(form, inputType) {
     submit(form, inputType).then(
       function(response) {
         dispatch(recipeSaved(response))
+        location.href = "/recipes"
       }),
       function(error) {
         console.log(error)
