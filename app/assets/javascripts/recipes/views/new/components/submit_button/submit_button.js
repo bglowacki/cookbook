@@ -8,7 +8,7 @@ export default class SubmitButton extends React.Component {
   };
 
   submit = () => {
-    this.context.store.dispatch(submitForm(this.props.recipe))
+    this.context.store.dispatch(submitForm(this.props.recipe, this.props.inputType))
   };
 
   render = () => {

@@ -1,7 +1,6 @@
 import React from "react";
 import _ from 'lodash';
 
-import {Input} from 'react-bootstrap'
 import PreparationStepInput from './preparation_steps/preparation_step_input'
 import IngredientInput from './ingredients/ingredient_input'
 import NameInput from './name/name_input'
@@ -44,7 +43,7 @@ class NewRecipeForm extends React.Component {
         {this.renderIngredients()}
       </div>
       <AddNewInputButton onClick={this.addIngredientInput} />
-      <SubmitButton recipe={this.props.recipe} />
+      <SubmitButton recipe={this.props.recipe.toParams()} inputType="byHand"/>
     </form>)
   };
 }

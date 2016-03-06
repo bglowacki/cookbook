@@ -1,12 +1,12 @@
 import Q from 'q'
 import $ from 'jquery'
 
-export function submit(recipe) {
+export function submit(recipe, inputType) {
   var deferred = Q.defer();
   $.ajax({
     url: "/recipes",
     method: "post",
-    data: recipe.toParams(),
+    data: {recipe: recipe, input_type: inputType},
     success: function (response) {
       deferred.resolve(response)
     },

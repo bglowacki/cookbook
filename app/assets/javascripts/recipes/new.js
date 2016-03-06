@@ -7,6 +7,9 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 import NewRecipeView from './views/new/new_recipe_view';
 import newRecipeApp from './views/new/new_recipe_app'
 import NavigationView from '../navigation/navigation_view'

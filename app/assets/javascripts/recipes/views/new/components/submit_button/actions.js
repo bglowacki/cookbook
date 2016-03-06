@@ -4,12 +4,10 @@ export const SUBMITTING = 'SUBMITTING';
 export const RECIPE_SAVED = 'RECIPE_SAVED';
 
 
-export function submitForm(form) {
+export function submitForm(form, inputType) {
   return function(dispatch) {
-    console.log("after");
-
     dispatch(submitting());
-    submit(form).then(
+    submit(form, inputType).then(
       function(response) {
         dispatch(recipeSaved(response))
       }),
@@ -20,7 +18,6 @@ export function submitForm(form) {
 }
 
 export function submitting() {
-  console.log("submitting");
   return {
     type: SUBMITTING
   }

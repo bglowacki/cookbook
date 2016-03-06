@@ -31,10 +31,14 @@ class RecipesController < ApplicationController
   private
 
   def create_recipe_service
-    @create_recipe_service = Services::Recipes::Create.new(recipe_repository)
+    @create_recipe_service = Services::Recipes::Create.new(recipe_repository, recipe_downloader)
   end
 
   def recipe_repository
     @recipe_repository ||= Repositories::RecipeDb.new
+  end
+
+  def recipe_downloader
+    @recipe_downloader ||= Services::Recipes::Downloader.new
   end
 end
