@@ -1,4 +1,5 @@
-import {Input} from 'react-bootstrap'
+import TextField from 'material-ui/lib/text-field';
+
 import React from 'react'
 
 import {changeName} from './actions'
@@ -15,10 +16,9 @@ export default class NameInput extends React.Component {
 
   render = () => {
     return(
-      <Input
+      <TextField
         type="text"
-        placeholder="Dish name"
-        label="Name"
+        floatingLabelText= "Dish name"
         onChange={this.changeName}
       />)
   };

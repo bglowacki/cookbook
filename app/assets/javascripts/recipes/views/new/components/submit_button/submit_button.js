@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button} from 'react-bootstrap'
+import RaisedButton from 'material-ui/lib/raised-button';
 import {submitForm} from './actions'
 
 export default class SubmitButton extends React.Component {
@@ -12,6 +12,12 @@ export default class SubmitButton extends React.Component {
   };
 
   render = () => {
-    return(<Button onClick={this.submit} className="btn btn-success">Submit</Button>);
+    return(
+      <RaisedButton
+        onClick={this.submit}
+        primary={true}
+        label="Submit"
+        />
+    );
   };
 }

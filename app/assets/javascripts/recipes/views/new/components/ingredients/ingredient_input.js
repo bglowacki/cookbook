@@ -1,7 +1,7 @@
 import React from "react";
 import _ from 'lodash';
 
-import {Input} from 'react-bootstrap'
+import TextField from 'material-ui/lib/text-field';
 import {changeIngredient} from './actions'
 
 export default class IngredientInput extends React.Component {
@@ -36,7 +36,12 @@ export default class IngredientInput extends React.Component {
     return (
       <div className="form-inline clearfix">
         <div className="col-xs-2 col-xs-offset-1">
-          <Input type="text" onChange={this.changeIngredient} ref={"ingredient_" + this.props.index} className="ingredient-input" label={"Ingredient " + this.props.index}/>
+          <TextField
+            type="text"
+            onChange={this.changeIngredient}
+            ref={"ingredient_" + this.props.index}
+            className="ingredient-input"
+            floatingLabelText={"Ingredient " + this.props.index}/>
         </div>
       </div>
     )
