@@ -17,17 +17,25 @@ import _ from 'lodash';
 
 class ShowView extends React.Component {
   ingredientListToListonicList = () => {
-    return _.map(this.props.data.recipe.ingredientsList, function(ingredient) {
-      return ingredient.name
+
+    return _.flatMap(this.props.data.recipe.ingredientsList, function(ingredientSection) {
+      return _.map(ingredientSection, function(ingredient) {
+        return(ingredient.name)
+      })
     }).join("<br/>")
   };
 
-  componentDidUpdate = () => {
+  componentDidMount = () => {
     window.listonic_name = this.props.data.recipe.name;
     window.listonic_content = this.ingredientListToListonicList();
     var script = document.createElement("script");
     script.src = "http://buttons.listonic.pl/v1/button.js";
     document.getElementById("actions").appendChild(script)
+  };
+
+  componentDidUpdate = () => {
+    window.listonic_name = this.props.data.recipe.name;
+    window.listonic_content = this.ingredientListToListonicList();
   };
 
   ingredientsList = () => {
