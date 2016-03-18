@@ -15,7 +15,7 @@ module Aggregates
       def self.create(name, ingredients, preparation_steps)
         uuid = SecureRandom.uuid
         recipe = self.new(uuid)
-        recipe.apply(Events::Recipes::RecipeCreated.new(uuid, name, ingredients, preparation_steps))
+        recipe.apply(Events::Recipes::RecipeCreatedFromForm.new(uuid, name, ingredients, preparation_steps))
         recipe
       end
 
@@ -42,7 +42,7 @@ module Aggregates
 
       def apply_event(event)
         case event
-          when Events::Recipes::RecipeCreated
+          when Events::Recipes::RecipeCreatedFromForm
             apply_recipe_created(event)
           else
             raise UnknownEvent.new(event)

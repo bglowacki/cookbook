@@ -1,6 +1,6 @@
 module Handlers
   module Recipes
-    class Create
+    class CreateRecipeFromForm
       def initialize(recipes_repository)
         @recipes_repository = recipes_repository
       end

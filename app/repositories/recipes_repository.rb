@@ -27,7 +27,7 @@ module Repositories
       streams.map do |event|
         payload = MultiJson.load(event.payload)
         case event.event_type
-          when "Events::Recipes::RecipeCreated"
+          when "Events::Recipes::RecipeCreatedFromForm"
             ingredients = payload["ingredients"].each_with_object({}) do |(section_name, ingredients), list|
               list[section_name] = ingredients.map do |ingredient|
                 Ingredient.new(ingredient['name'])
@@ -36,7 +36,7 @@ module Repositories
             preparation_steps = payload["preparation_steps"].map do |preparation_step|
               PreparationStep.new(preparation_step['order_number'] ,preparation_step['description'])
             end
-            Events::Recipes::RecipeCreated.new(event.aggregate_id, payload["name"], ingredients, preparation_steps)
+            Events::Recipes::RecipeCreatedFromForm.new(event.aggregate_id, payload["name"], ingredients, preparation_steps)
         end
       end
     end

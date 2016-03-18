@@ -1,6 +1,6 @@
 module Events
   module Recipes
-    class RecipeCreated
+    class RecipeCreatedFromForm
       attr_reader :name, :ingredients, :id, :preparation_steps
 
       def initialize(id, name, ingredients, preparation_steps)

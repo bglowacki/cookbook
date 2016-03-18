@@ -1,6 +1,6 @@
 module Commands
   module Recipes
-    class Create
+    class CreateRecipeFromForm
       def initialize(params)
         @params = params
       end

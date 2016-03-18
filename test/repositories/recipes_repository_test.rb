@@ -6,8 +6,8 @@ module Repositories
 
     def setup
       @recipes_repository = Repositories::RecipesRepository.new
-      @command = Commands::Recipes::Create.new(params)
-      @handler = Handlers::Recipes::Create.new(@recipes_repository)
+      @command = Commands::Recipes::CreateRecipeFromForm.new(params)
+      @handler = Handlers::Recipes::CreateRecipeFromForm.new(@recipes_repository)
     end
 
     def test_handler_properly_throws_an_event_and_creates_recipe
