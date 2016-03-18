@@ -6,7 +6,9 @@ module Handlers
       end
       
       def handle(command)
-        recipe = Aggregates::Recipes::Recipe.create(command.name, command.ingredients, command.preparation_steps)
+        uuid = SecureRandom.uuid
+        recipe = Aggregates::Recipes::Recipe.new(uuid)
+        recipe.apply(Events::Recipes::RecipeCreatedFromForm.new(uuid, command.name, command.ingredients, command.preparation_steps))
         @recipes_repository.persist(recipe)
       end
     end

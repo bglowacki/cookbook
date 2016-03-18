@@ -12,13 +12,6 @@ module Aggregates
     class Recipe
       attr_reader :id, :name, :ingredients, :preparation_steps, :unpublished_events
 
-      def self.create(name, ingredients, preparation_steps)
-        uuid = SecureRandom.uuid
-        recipe = self.new(uuid)
-        recipe.apply(Events::Recipes::RecipeCreatedFromForm.new(uuid, name, ingredients, preparation_steps))
-        recipe
-      end
-
       def initialize(id, published_events=[])
         @id = id
         @name = nil
