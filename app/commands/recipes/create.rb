@@ -10,8 +10,10 @@ module Commands
       end
 
       def ingredients
-        @params[:ingredients].values.map do |ingredient|
-          Ingredient.new(ingredient['name'])
+        @params[:ingredients].map do |section_name, ingredients|
+          ingredients.values.map do |ingredient|
+            Ingredient.new(ingredient['name'])
+          end
         end
       end
 
