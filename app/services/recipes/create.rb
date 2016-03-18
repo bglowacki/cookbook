@@ -13,8 +13,6 @@ module Services
           recipe = Forms::RecipeForm.new(params).build
           @recipe_repository.create(recipe)
         end
-
-
       end
     end
   end
