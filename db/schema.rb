@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228183306) do
+ActiveRecord::Schema.define(version: 20160318200744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "recipe_streams", force: :cascade do |t|
+    t.string   "aggregate_id"
+    t.string   "event_type"
+    t.text     "payload"
+    t.datetime "created_at"
+  end
 
   create_table "recipes", force: :cascade do |t|
     t.string  "name"

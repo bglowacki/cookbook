@@ -2,6 +2,8 @@ require 'test_helper'
 
 module Repositories
   class RecipesRepositoryTest < Minitest::Test
+    include ::Support::DatabasePlugin
+
     def setup
       @recipes_repository = Repositories::RecipesRepository.new
       @command = Commands::Recipes::Create.new(params)
