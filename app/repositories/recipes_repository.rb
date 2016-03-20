@@ -46,6 +46,16 @@ module Repositories
               PreparationStep.new(preparation_step['order_number'] ,preparation_step['description'])
             end
             Events::Recipes::RecipeCreatedFromForm.new(event.aggregate_id, payload["name"], ingredients, preparation_steps)
+          when "Events::Recipes::RecipeCreatedWithDownloader"
+            ingredients = payload["ingredients"].each_with_object({}) do |(section_name, ingredients), list|
+              list[section_name] = ingredients.map do |ingredient|
+                Ingredient.new(ingredient['name'])
+              end
+            end
+            preparation_steps = payload["preparation_steps"].map do |preparation_step|
+              PreparationStep.new(preparation_step['order_number'] ,preparation_step['description'])
+            end
+            Events::Recipes::RecipeCreatedWithDownloader.new(event.aggregate_id, payload["name"], ingredients, preparation_steps, payload["kcal"], payload["portions_quantity"], payload["source_url"])
         end
       end
     end

@@ -12,7 +12,7 @@ module Services
         portions_quantity = get_portions(page)
         ingredients = get_ingredients(page)
         preparation_steps = get_preparation_steps(page)
-        Recipe.new(name: name, kcal: kcal, portions_quantity: portions_quantity, ingredients: ingredients, preparation_steps: preparation_steps, source_url: recipe_url).save!
+        {name: name, kcal: kcal, portions_quantity: portions_quantity, ingredients: ingredients, preparation_steps: preparation_steps, source_url: recipe_url}
       end
 
       private
