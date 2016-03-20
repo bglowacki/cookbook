@@ -12,7 +12,14 @@ module Services
         portions_quantity = get_portions(page)
         ingredients = get_ingredients(page)
         preparation_steps = get_preparation_steps(page)
-        {name: name, kcal: kcal, portions_quantity: portions_quantity, ingredients: ingredients, preparation_steps: preparation_steps, source_url: recipe_url}
+        {
+          name: name,
+          kcal: kcal,
+          portions_quantity: portions_quantity,
+          ingredients: ingredients,
+          preparation_steps: preparation_steps,
+          source_url: recipe_url
+        }
       end
 
       private

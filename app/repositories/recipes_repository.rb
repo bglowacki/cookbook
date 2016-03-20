@@ -3,7 +3,7 @@ class RecipeNotFound < StandardError; end
 module Repositories
   class RecipesRepository
     def all
-      event_groups = RecipeStream.all.group_by(&:aggregate_id)
+      event_groups = Recipe.all.group_by(&:aggregate_id)
       event_groups.map do |aggregate_id, raw_events|
         sorted_raw_events = raw_events.sort {|a,b| a.created_at <=> b.created_at}
         events = build_events(sorted_raw_events)
@@ -12,7 +12,7 @@ module Repositories
     end
 
     def load(id)
-      raw_events = RecipeStream.where(aggregate_id: id)
+      raw_events = Recipe.where(aggregate_id: id)
       if raw_events.empty?
         raise RecipeNotFound
       end
@@ -22,14 +22,14 @@ module Repositories
 
     def persist(recipe)
       recipe.unpublished_events.each do |event|
-        RecipeStream.new(aggregate_id: recipe.id, event_type: event.class.to_s, payload: MultiJson.dump(event.payload)).save!
+        Recipe.new(aggregate_id: recipe.id, event_type: event.class.to_s, payload: MultiJson.dump(event.payload)).save!
       end
       recipe.clear_unpublished_events
       recipe
     end
 
     def count
-      RecipeStream.count
+      Recipe.count
     end
 
     def build_events(streams)
