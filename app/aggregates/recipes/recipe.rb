@@ -10,13 +10,17 @@ end
 module Aggregates
   module Recipes
     class Recipe
-      attr_reader :id, :name, :ingredients, :preparation_steps, :unpublished_events
+      include ActiveModel::Serialization
+      attr_reader :id, :name, :ingredients, :preparation_steps, :unpublished_events, :kcal, :portions_quantity, :source_url
 
       def initialize(id, published_events=[])
         @id = id
         @name = nil
         @ingredients = []
         @preparation_steps = []
+        @kcal = nil
+        @portions_quantity = nil
+        @source_url = nil
 
         @published_events = published_events
         @published_events.each {|event| apply_event(event)}

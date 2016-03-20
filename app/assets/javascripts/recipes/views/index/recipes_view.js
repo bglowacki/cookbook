@@ -21,11 +21,9 @@ class RecipesView extends React.Component {
   render = () => {
     return(
       <div id="recipes">
-        <div className="col-xs-3">
-          <List>
-            {this.recipesList()}
-          </List>
-        </div>
+        <List>
+          {this.recipesList()}
+        </List>
       </div>
     )
   }

@@ -2,6 +2,15 @@ class RecipeNotFound < StandardError; end
 
 module Repositories
   class RecipesRepository
+    def all
+      event_groups = RecipeStream.all.group_by(&:aggregate_id)
+      event_groups.map do |aggregate_id, raw_events|
+        sorted_raw_events = raw_events.sort {|a,b| a.created_at <=> b.created_at}
+        events = build_events(sorted_raw_events)
+        Aggregates::Recipes::Recipe.new(aggregate_id, events)
+      end
+    end
+
     def load(id)
       raw_events = RecipeStream.where(aggregate_id: id)
       if raw_events.empty?

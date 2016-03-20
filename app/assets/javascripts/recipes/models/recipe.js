@@ -13,7 +13,7 @@ export default class Recipe {
   toParams = () => {
     return({
       name: this.name,
-      ingredients: this.ingredientsListParams(),
+      ingredients: {main: this.ingredientsListParams()},
       preparation_steps: this.preparationStepsListParams()
     })
   };

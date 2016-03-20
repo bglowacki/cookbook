@@ -61269,15 +61269,21 @@
 	    }
 
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ShowView)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.ingredientListToListonicList = function () {
-	      return _lodash2.default.map(_this.props.data.recipe.ingredientsList, function (ingredient) {
-	        return ingredient.name;
+
+	      return _lodash2.default.flatMap(_this.props.data.recipe.ingredientsList, function (ingredientSection) {
+	        return _lodash2.default.map(ingredientSection, function (ingredient) {
+	          return ingredient.name;
+	        });
 	      }).join("<br/>");
-	    }, _this.componentDidUpdate = function () {
+	    }, _this.componentDidMount = function () {
 	      window.listonic_name = _this.props.data.recipe.name;
 	      window.listonic_content = _this.ingredientListToListonicList();
 	      var script = document.createElement("script");
 	      script.src = "http://buttons.listonic.pl/v1/button.js";
 	      document.getElementById("actions").appendChild(script);
+	    }, _this.componentDidUpdate = function () {
+	      window.listonic_name = _this.props.data.recipe.name;
+	      window.listonic_content = _this.ingredientListToListonicList();
 	    }, _this.ingredientsList = function () {
 	      return _lodash2.default.map(_this.props.data.recipe.ingredientsList, function (ingredients, ingredientSection, index) {
 	        return _react2.default.createElement(

@@ -2,9 +2,10 @@ class RecipesController < ApplicationController
 
   def index
     recipes = Recipe.all
+    recipe_aggregates = recipes_es_repository.all
     respond_to do |format|
       format.html {}
-      format.json {render json: recipes, each_serializer: RecipeSerializer, root: false}
+      format.json {render json: recipe_aggregates, each_serializer: RecipeSerializer, root: false}
     end
   end
 
@@ -12,7 +13,7 @@ class RecipesController < ApplicationController
     respond_to do |format|
       format.html {}
       format.json {
-        recipe = recipe_repository.find(params[:id])
+        recipe = recipes_es_repository.load(params[:id])
         render json: recipe
       }
     end
@@ -31,7 +32,11 @@ class RecipesController < ApplicationController
   private
 
   def create_recipe_service
-    @create_recipe_service = Services::Recipes::Create.new(recipe_repository, recipe_downloader)
+    @create_recipe_service = Services::Recipes::Create.new(recipe_repository, recipe_downloader, recipes_es_repository)
+  end
+
+  def recipes_es_repository
+    @recipes_es_repository = Repositories::RecipesRepository.new
   end
 
   def recipe_repository

@@ -2,15 +2,15 @@ module Commands
   module Recipes
     class CreateRecipeFromForm
       def initialize(params)
-        @params = params
+        @recipe = params[:recipe]
       end
 
       def name
-        @params[:name]
+        @recipe[:name]
       end
 
       def ingredients
-        @params[:ingredients].each_with_object({}) do |(section_name, ingredients), list|
+        @recipe[:ingredients].each_with_object({}) do |(section_name, ingredients), list|
           list[section_name] = ingredients.values.map do |ingredient|
             Ingredient.new(ingredient['name'])
           end
@@ -18,7 +18,7 @@ module Commands
       end
 
       def preparation_steps
-        @params[:preparation_steps].values.map do |preparation_step|
+        @recipe[:preparation_steps].values.map do |preparation_step|
           PreparationStep.new(preparation_step['order_number'] ,preparation_step['description'])
         end
       end
