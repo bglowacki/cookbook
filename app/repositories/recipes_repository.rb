@@ -16,7 +16,7 @@ module Repositories
       if raw_events.empty?
         raise RecipeNotFound
       end
-      events = build_events(raw_events, aggregate_id)
+      events = build_events(raw_events, id)
       Aggregates::Recipes::Recipe.new(id, events)
     end
 
