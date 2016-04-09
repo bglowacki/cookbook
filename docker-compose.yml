@@ -1,0 +1,39 @@
+version: '2'
+services:
+  cookbook:
+    image: bglowacki/cookbook:1.0
+    depends_on:
+      - postgresql
+      - postgresql_test
+    links:
+      - postgresql:postgresql
+      - postgresql_test:postgresql_test
+    command: dockerize -timeout 30s -wait tcp://postgresql:5432  -wait tcp://postgresql_test:5432 ./start
+    ports:
+      - 3000:3000
+      - 8080:8080
+    volumes:
+      - ${PWD}:/usr/app
+    environment:
+      DOCKER_ENV: "true"
+
+  postgresql:
+    image: postgres
+    volumes_from:
+      - postgresql_data
+    depends_on:
+      - postgresql_data
+    environment:
+      POSTGRES_PASSWORD: cookbook
+      POSTGRES_DB: cookbook_development
+
+  postgresql_test:
+      image: postgres
+      environment:
+        POSTGRES_PASSWORD: cookbook
+        POSTGRES_DB: cookbook_test
+
+  postgresql_data:
+    image: busybox
+    volumes:
+      - /var/lib/postgresql/data

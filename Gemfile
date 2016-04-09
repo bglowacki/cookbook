@@ -14,6 +14,7 @@ gem 'pg'
 gem 'virtus'
 gem 'mechanize'
 gem 'active_model_serializers'
+gem 'foreman'
 
 
 group :development, :test do

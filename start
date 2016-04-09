@@ -1,0 +1,5 @@
+#!/bin/bash
+PATH=/root/local/ruby-2.2.2/bin:$HOME/bin:$PATH
+
+rm tmp/pids/server.pid
+foreman start

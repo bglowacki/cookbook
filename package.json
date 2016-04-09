@@ -43,7 +43,7 @@
   "scripts": {
     "build": "webpack --progress --profile --colors --bail",
     "predev-server": "npm install && npm run build",
-    "dev-server": "webpack-dev-server --hot --inline --progress --colors"
+    "dev-server": "webpack-dev-server --host 0.0.0.0 --hot --inline --progress --colors"
   },
   "author": "",
   "license": "ISC"

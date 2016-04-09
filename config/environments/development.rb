@@ -38,7 +38,7 @@ Rails.application.configure do
 
   config.action_controller.asset_host = Proc.new { |source|
     if source =~ /^\/assets\/dist\/\w+\.js$/i
-      "http://localhost:8080"
+      "http://dockerhost:8080"
     end
   }
 
