@@ -1,0 +1,32 @@
+version: '2'
+services:
+  cookbook:
+    restart: always
+    image: bglowacki/cookbook:1.1
+    depends_on:
+      - postgresql
+    links:
+      - postgresql:postgresql
+    command: dockerize -timeout 30s -wait tcp://postgresql:5432 ./start
+    ports:
+      - 80:3000
+    environment:
+      RAILS_ENV: 'production'
+      SECRET_KEY_BASE: '965e6c43710d030e0e9c21d5a6b9e722171343d727715fc823df3b60be7c01a9378f5a6bfa263ad7dcbd5b8135956544e0fadaf3e4e19ee0e799a394b17dd377'
+      RAILS_SERVE_STATIC_FILES: 'true'
+      NODE_ENV: 'production'
+
+  postgresql_data:
+    image: busybox
+    volumes:
+      - /var/lib/postgresql/data
+
+  postgresql:
+    image: postgres
+    volumes_from:
+      - postgresql_data
+    depends_on:
+      - postgresql_data
+    environment:
+      POSTGRES_PASSWORD: cookbook
+      POSTGRES_DB: cookbook
