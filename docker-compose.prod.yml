@@ -2,7 +2,7 @@ version: '2'
 services:
   cookbook:
     restart: always
-    image: bglowacki/cookbook:1.1
+    image: bglowacki/cookbook:latest
     depends_on:
       - postgresql
     links:
