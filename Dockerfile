@@ -21,4 +21,7 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/v0.2.0/dockerize
 
 COPY . /usr/app
 
+RUN npm run build
+RUN bundle exec rake assets:precompile
+
 CMD  foreman start
