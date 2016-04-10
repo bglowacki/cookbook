@@ -20,7 +20,7 @@ class NavigationView extends React.Component {
 
   render = () => {
     return(
-      <LeftNav width={200} open={true} width={200}>
+      <LeftNav width={200} open={true}>
         <List>
           <ListItem onClick={this.indexRecipes}> Recipes </ListItem>
           <ListItem onClick={this.newRecipe}> New Recipe </ListItem>
