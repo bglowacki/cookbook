@@ -3,4 +3,4 @@ PATH=/root/local/ruby-2.2.2/bin:$HOME/bin:$PATH
 
 bundle exec rake db:migrate
 rm tmp/pids/server.pid
-bundle exec rails s -b 0.0.0.0
+foreman start
