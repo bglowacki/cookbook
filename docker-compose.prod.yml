@@ -4,10 +4,14 @@ services:
     image: bglowacki/cookbook_nginx:latest
     depends_on:
       - cookbook_1
+      - cookbook_2
+      - cookbook_3
     ports:
       - 80:80
     links:
       - cookbook_1:cookbook_1
+      - cookbook_2:cookbook_2
+      - cookbook_3:cookbook_3
 
   cookbook_1:
     restart: always
@@ -24,6 +28,40 @@ services:
       SECRET_KEY_BASE: '965e6c43710d030e0e9c21d5a6b9e722171343d727715fc823df3b60be7c01a9378f5a6bfa263ad7dcbd5b8135956544e0fadaf3e4e19ee0e799a394b17dd377'
       RAILS_SERVE_STATIC_FILES: 'true'
       NODE_ENV: 'production'
+
+  cookbook_2:
+    restart: always
+    image: bglowacki/cookbook:latest
+    depends_on:
+      - postgresql
+    links:
+      - postgresql:postgresql
+    command: dockerize -timeout 30s -wait tcp://postgresql:5432 ./start
+    ports:
+      - 3000
+    environment:
+      RAILS_ENV: 'production'
+      SECRET_KEY_BASE: '965e6c43710d030e0e9c21d5a6b9e722171343d727715fc823df3b60be7c01a9378f5a6bfa263ad7dcbd5b8135956544e0fadaf3e4e19ee0e799a394b17dd377'
+      RAILS_SERVE_STATIC_FILES: 'true'
+      NODE_ENV: 'production'
+
+  cookbook_3:
+    restart: always
+    image: bglowacki/cookbook:latest
+    depends_on:
+      - postgresql
+    links:
+      - postgresql:postgresql
+    command: dockerize -timeout 30s -wait tcp://postgresql:5432 ./start
+    ports:
+      - 3000
+    environment:
+      RAILS_ENV: 'production'
+      SECRET_KEY_BASE: '965e6c43710d030e0e9c21d5a6b9e722171343d727715fc823df3b60be7c01a9378f5a6bfa263ad7dcbd5b8135956544e0fadaf3e4e19ee0e799a394b17dd377'
+      RAILS_SERVE_STATIC_FILES: 'true'
+      NODE_ENV: 'production'
+
+
 
   postgresql_data:
     image: busybox
